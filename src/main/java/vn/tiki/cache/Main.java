@@ -18,6 +18,7 @@ public class Main {
         try {
             var env = System.getenv("env_name");
             System.out.println("ENV_NAME: " + env);
+
             XmlConfigBuilder builder = null;
             if (env == null || env.equals("local")) {
                 builder = new XmlConfigBuilder("config/thanos-hazelcast-local.xml");

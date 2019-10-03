@@ -16,12 +16,9 @@
     <version>1.0-SNAPSHOT</version>
     <repositories>
         <repository>
-            <id>Hazelcast Private Snapshot Repository</id>
-            <url>https://repository.hazelcast.com/snapshot/</url>
-        </repository>
-        <repository>
-            <id>Hazelcast Private Release Repository</id>
-            <url>https://repository.hazelcast.com/release/</url>
+            <id>archiva.snapshots</id>
+            <name>Archiva Snapshots</name>
+            <url>http://archiva.dev.tiki.services/repository/internal</url>
         </repository>
     </repositories>
 

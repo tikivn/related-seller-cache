@@ -3,7 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="d3424450-a01d-4918-b89c-01a7f3f2caad" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/thanos-hazelcast-production.xml" beforeDir="false" afterPath="$PROJECT_DIR$/config/thanos-hazelcast-production.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/vn/tiki/cache/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/vn/tiki/cache/Main.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
