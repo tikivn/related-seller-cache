@@ -1,0 +1,87 @@
+version: 1
+
+config:
+    slack_notify: true
+    slack_channel: query_seller_rate
+
+environment:
+    BUILD_IMAGE: 'maven:3.6-jdk-11'
+
+# Jobs are specified in the jobs map and must have unique name
+jobs:
+    build:
+        docker:
+            - image:
+                name: '{{ .env.BUILD_IMAGE }}'
+
+        steps:
+            - restore_cache:
+                key: maven-3.6-jdk-11
+#            - sonar:
+#                name: Run Sonarqube Scanner
+#                maven: mvn test sonar:sonar
+            - run:
+                name: Install package to repository
+                command: mvn clean package -DskipTests
+            - save_cache:
+                key: maven-3.6-jdk-11
+                paths:
+                    - /root/.m2
+#                    - /root/.sonar/cache
+
+    build_docker:
+        steps:
+            - build_image
+
+    publish_docker:
+        steps:
+            - push_image
+
+    deploy_dev:
+        steps: deploy_dev
+        
+    deploy_staging:
+        steps: deploy_staging
+
+    deploy_production:
+        steps: deploy_production
+
+workflows:
+    jenkins_pipeline:
+        jobs:
+            - build
+            - build_docker:
+                requires:
+                    - build
+            - publish_docker:
+                requires:
+                    - build_docker
+                filters:
+                    branches:
+                        only:
+                            - master
+                            - staging
+                            - development
+
+            - deploy_dev:
+                requires:
+                    - publish_docker
+                filters:
+                    branches:
+                        only:
+                            - development
+
+            - deploy_production:
+                requires:
+                    - publish_docker
+                filters:
+                    branches:
+                        only:
+                            - master
+            - deploy_staging:
+                requires:
+                    - publish_docker
+                filters:
+                    branches:
+                        only:
+                            - staging
