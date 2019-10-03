@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<hazelcast xsi:schemaLocation="http://www.hazelcast.com/schema/config hazelcast-config-3.7.xsd"
+           xmlns="http://www.hazelcast.com/schema/config"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <!--<group>-->
+        <!--<name>uat-thanos</name>-->
+        <!--<password>uat-pass</password>-->
+    <!--</group>-->
+
+    <!--<management-center enabled="true" update-interval="3">https://uat-hazelcast.tiki.services/hazelcast-mancenter/</management-center>-->
+
+    <network>
+        <port auto-increment="true" port-count="20">5701</port>
+        <join>
+            <multicast enabled="false">
+            </multicast>
+            <tcp-ip enabled="true">
+                <member>localhost</member>
+            </tcp-ip>
+        </join>
+    </network>
+
+    <serialization>
+        <use-native-byte-order>true</use-native-byte-order>
+        <allow-unsafe>true</allow-unsafe>
+    </serialization>
+
+    <map name="*_cache">
+        <in-memory-format>NATIVE</in-memory-format>
+        <statistics-enabled>true</statistics-enabled>
+        <backup-count>0</backup-count>
+        <async-backup-count>1</async-backup-count>
+        <time-to-live-seconds>0</time-to-live-seconds>
+        <max-idle-seconds>0</max-idle-seconds>
+        <eviction-policy>NONE</eviction-policy>
+        <max-size policy="USED_NATIVE_MEMORY_PERCENTAGE">0</max-size>
+        <eviction-percentage>0</eviction-percentage>
+        <min-eviction-check-millis>0</min-eviction-check-millis>
+        <read-backup-data>true</read-backup-data>
+        <near-cache>
+            <in-memory-format>NATIVE</in-memory-format>
+            <invalidate-on-change>true</invalidate-on-change>
+            <max-idle-seconds>84600</max-idle-seconds>
+            <time-to-live-seconds>259200</time-to-live-seconds>
+            <eviction eviction-policy="LRU" max-size-policy="USED_NATIVE_MEMORY_SIZE" size="90"/>
+        </near-cache>
+        <hot-restart enabled="false">
+            <fsync>true</fsync>
+        </hot-restart>
+        <map-store enabled="false" initial-mode="LAZY">
+            <write-delay-seconds>0</write-delay-seconds>
+            <write-batch-size>1</write-batch-size>
+        </map-store>
+    </map>
+
+    <native-memory allocator-type="POOLED" enabled="true">
+        <size unit="GIGABYTES" value="1"/>
+    </native-memory>
+
+    <license-key>9u06mFAO1fUNbEa1HS5VT7rkwIyjK330913112100130003070311912010110511911111111111111111311</license-key>
+</hazelcast>
