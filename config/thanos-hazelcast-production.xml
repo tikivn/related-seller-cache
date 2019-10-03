@@ -3,7 +3,7 @@
            xmlns="http://www.hazelcast.com/schema/config"
            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
     <group>
-        <name>production-thanos</name>
+        <name>production-related-seller</name>
         <password>production-pass</password>
     </group>
 
@@ -13,7 +13,7 @@
         <port auto-increment="true" port-count="20">5701</port>
         <join>
             <kubernetes enabled="true">
-                <service-dns>thanos-headless.default.svc.cluster.local</service-dns>
+                <service-dns>related-seller-cache-headless.default.svc.cluster.local</service-dns>
             </kubernetes>
             <multicast enabled="false">
             </multicast>
@@ -50,7 +50,7 @@
     </map>
 
     <native-memory allocator-type="POOLED" enabled="true">
-        <size unit="GIGABYTES" value="6"/>
+        <size unit="GIGABYTES" value="8"/>
     </native-memory>
 
     <license-key>9u06mFAO1fUNbEa1HS5VT7rkwIyjK330913112100130003070311912010110511911111111111111111311</license-key>
